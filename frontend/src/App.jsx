@@ -7,7 +7,7 @@ import Jobs from "./pages/Jobs";
 import Reminders from "./pages/Reminders";
 import Documents from "./pages/Documents";
 import Login from "./pages/Login";
-import ApplicationDetails from "./pages/ApplicationDetails";
+import ApplicationDetails from "./pages/applicationDetails";
 
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
@@ -20,7 +20,7 @@ import Profile from "./pages/Profile"; // ✅ ADDED
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SystemLogs from "./pages/admin/SystemLogs";
+import SystemLogs from "./pages/admin/systemLogs";
 
 function App() {
   const isAuthed = !!localStorage.getItem("token");
