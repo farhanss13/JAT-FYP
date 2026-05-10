@@ -15,11 +15,10 @@ API.interceptors.request.use((req) => {
     req.headers.Authorization = `Bearer ${token}`;
   }
 
-  updateActivity(); // 🔥 every request refreshes activity
+  updateActivity(); 
   return req;
 });
 
-// 🔒 AUTO LOGOUT IF INACTIVE
 setInterval(() => {
   const last = localStorage.getItem("lastActivity");
 
@@ -27,11 +26,10 @@ setInterval(() => {
 
   const diff = Date.now() - parseInt(last);
 
-  // 30 minutes
   if (diff > 30 * 60 * 1000) {
     localStorage.clear();
     window.location.href = "/login";
   }
-}, 60000); // check every minute
+}, 60000); 
 
 export default API;

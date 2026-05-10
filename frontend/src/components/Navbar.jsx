@@ -130,7 +130,7 @@ const Navbar = () => {
                 </p>
               ) : (
                 <div
-                  className="max-h-[13.5rem] overflow-y-auto overscroll-contain"
+                  className="mx-h-54 overflow-y-auto overscroll-contain"
                   aria-label="Notification list"
                 >
                   {notifications.map((n) => (
