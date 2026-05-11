@@ -32,12 +32,6 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/settings", settingsRoutes);
 app.use("/api/logs", require("./routes/logRoutes"));
 
-
-
-
-
-
-
 // Test route
 app.get("/", (req, res) => {
   res.send("API is running...");
