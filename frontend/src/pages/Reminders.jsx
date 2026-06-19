@@ -66,7 +66,10 @@ const Reminders = () => {
     }
 
     try {
-      await API.post("/reminders", form);
+      await API.post("/reminders", {
+        ...form,
+        reminderDate: new Date(form.reminderDate).toISOString(),
+      });
 
       toast.success("Reminder added");
 
