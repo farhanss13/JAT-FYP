@@ -1,10 +1,10 @@
 const cron = require("node-cron");
 const Reminder = require("../models/Reminder");
 const User = require("../models/User");
-const Settings = require("../models/Settings"); 
+const Settings = require("../models/Settings");
 const { sendEmail } = require("../services/emailService");
 
-cron.schedule("* * * * *", async () => {
+cron.schedule("*/30 * * * *", async () => {
   console.log("Checking reminders...");
 
   try {
@@ -20,7 +20,7 @@ cron.schedule("* * * * *", async () => {
     for (let reminder of dueReminders) {
       const user = await User.findById(reminder.userId);
 
-      
+
       if (settings?.emailNotifications && user?.email) {
         await sendEmail(
           user.email,

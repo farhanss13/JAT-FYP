@@ -59,7 +59,6 @@ function App() {
           }
         />
 
-        {/* ✅ PROFILE ROUTE */}
         <Route
           path="/profile"
           element={
@@ -73,13 +72,11 @@ function App() {
           }
         />
 
-        {/* USER */}
         <Route path="/jobs" element={isAuthed ? <Layout><Jobs /></Layout> : <Navigate to="/login" />} />
         <Route path="/documents" element={isAuthed ? <Layout><Documents /></Layout> : <Navigate to="/login" />} />
         <Route path="/reminders" element={isAuthed ? <Layout><Reminders /></Layout> : <Navigate to="/login" />} />
         <Route path="/job/:id" element={isAuthed ? <Layout><ApplicationDetails /></Layout> : <Navigate to="/login" />} />
 
-        {/* ADMIN */}
         <Route
           path="/admin/users"
           element={
