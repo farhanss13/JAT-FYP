@@ -37,7 +37,14 @@ const Documents = () => {
     }
   };
 
-  if (loading) return <div className="p-6">Loading documents...</div>;
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[300px] space-y-4">
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-slate-200 border-t-indigo-600"></div>
+        <p className="text-slate-500 text-sm font-medium animate-pulse">Loading documents...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

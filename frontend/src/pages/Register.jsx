@@ -2,6 +2,7 @@ import { useState } from "react";
 import API from "../services/api";
 import { toast } from "react-toastify";
 import logo from "../assets/Logo.png";
+import { Eye, EyeOff } from "lucide-react";
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -9,6 +10,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setForm({
@@ -98,18 +100,22 @@ const Register = () => {
           Password
         </label>
 
-        <div className="relative">
-
+        <div className="relative mb-5">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Create your password"
-            className="mb-5 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 pr-11 outline-none transition focus:border-cyan-500 focus:bg-white"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 pr-12 outline-none transition focus:border-cyan-500 focus:bg-white"
             onChange={handleChange}
             required
           />
-
-
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700 cursor-pointer"
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
         </div>
 
         {/* REGISTER BUTTON */}

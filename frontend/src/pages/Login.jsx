@@ -2,9 +2,11 @@ import { useState } from "react";
 import API from "../services/api";
 import { toast } from "react-toastify";
 import logo from "../assets/Logo.png";
+import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +56,7 @@ const Login = () => {
             Sign in to manage your job applications
           </p>
 
-        </div>
+          </div>
 
         {/* EMAIL */}
         <label className="mb-2 block text-sm font-semibold text-slate-700">
@@ -75,14 +77,23 @@ const Login = () => {
           Password
         </label>
 
-        <input
-          type="password"
-          placeholder="Enter your password"
-          className="mb-3 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 focus:bg-white"
-          onChange={(e) =>
-            setForm({ ...form, password: e.target.value })
-          }
-        />
+        <div className="relative mb-3">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Enter your password"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 pr-12 outline-none transition focus:border-cyan-500 focus:bg-white"
+            onChange={(e) =>
+              setForm({ ...form, password: e.target.value })
+            }
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700 cursor-pointer"
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
 
         {/* FORGOT PASSWORD */}
         <div className="mb-5 text-right">

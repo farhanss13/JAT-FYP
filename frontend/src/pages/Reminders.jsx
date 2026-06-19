@@ -150,6 +150,13 @@ const Reminders = () => {
             <option value="Other">Other</option>
           </select>
 
+          {/* INFO NOTICE */}
+          <div className="rounded-xl bg-blue-50 border border-blue-100 p-3.5 text-xs sm:text-sm text-blue-800">
+            <p>
+              <strong className="font-semibold">Note:</strong> Email notifications are dispatched in batches every 30 minutes in production (processed instantly during local evaluation).
+            </p>
+          </div>
+
           <button
             type="submit"
             className="w-full cursor-pointer sm:w-auto rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 px-5 py-2.5 font-semibold text-white shadow-md"
