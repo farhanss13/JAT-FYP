@@ -76,12 +76,10 @@ const Charts = ({ jobs }) => {
                 nameKey="name"
                 cx="50%"
                 cy="50%"
-                outerRadius={105}
-                innerRadius={65}
+                outerRadius={95}
+                innerRadius={60}
                 paddingAngle={5}
-                label={({ name, percent }) =>
-                  percent > 0 ? `${name} ${(percent * 100).toFixed(0)}%` : ""
-                }
+                label={false}
               >
                 {statusData.map((entry, index) => (
                   <Cell key={index} fill={COLORS[entry.name]} />
@@ -102,7 +100,7 @@ const Charts = ({ jobs }) => {
         </div>
 
         <ResponsiveContainer width="100%" height={320} debounce={200}>
-          <BarChart data={activityData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <BarChart data={activityData} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
             {/* Gradient definitions for extremely premium bars */}
             <defs>
               <linearGradient id="colorApplied" x1="0" y1="0" x2="0" y2="1">

@@ -81,7 +81,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="mt-4 flex items-center text-xs text-slate-500">
-            <span>Overall log count</span>
+            <span>Overall Applications</span>
           </div>
         </div>
 
@@ -129,7 +129,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="mt-4 flex items-center text-xs text-slate-500">
-            <span>Archived applications</span>
+            <span>Rejected Applications</span>
           </div>
         </div>
 
@@ -137,7 +137,7 @@ const Dashboard = () => {
 
       {/* RECENT APPLICATIONS TABLE */}
       <div className="rounded-2xl border border-slate-200/80 bg-white shadow-xs overflow-hidden">
-        
+
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center p-6 border-b border-slate-100">
           <div>
             <h2 className="text-xl font-bold tracking-tight text-slate-900">Recent Applications</h2>
@@ -187,10 +187,10 @@ const Dashboard = () => {
                   <td className="py-4 text-slate-500 text-sm">
                     {job.dateApplied
                       ? new Date(job.dateApplied).toLocaleDateString(undefined, {
-                          year: 'numeric',
-                          month: 'short',
-                          day: 'numeric'
-                        })
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      })
                       : "-"}
                   </td>
 

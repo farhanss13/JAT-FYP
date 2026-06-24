@@ -86,6 +86,25 @@ const Navbar = () => {
     }
   };
 
+  const markAllRead = async () => {
+    const unread = notifications.filter((n) => !n.isRead);
+    if (unread.length === 0) return;
+
+    try {
+      setNotifications((prev) =>
+        prev.map((n) => ({ ...n, isRead: true }))
+      );
+
+      await Promise.all(
+        unread.map((n) => API.put(`/reminders/read/${n._id}`))
+      );
+
+      fetchNotifications();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const fullName = user?.fullName || "User";
   const firstLetter = fullName.charAt(0).toUpperCase();
 
@@ -106,6 +125,9 @@ const Navbar = () => {
             onClick={() => {
               setOpen(!open);
               setUserOpen(false);
+              if (!open) {
+                markAllRead();
+              }
             }}
             className="relative cursor-pointer p-2 rounded-full hover:bg-slate-100 transition"
           >

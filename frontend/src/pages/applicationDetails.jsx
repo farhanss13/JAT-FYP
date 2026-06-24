@@ -67,9 +67,9 @@ const ApplicationDetails = () => {
   const status = job?.status || "Applied"; 
 
   return (
-    <div className="max-w-4xl rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="max-w-4xl rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm">
 
-      <h1 className="text-3xl font-bold text-slate-900 mb-4">
+      <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 truncate">
         {job?.positionTitle}
       </h1>
 
@@ -82,7 +82,7 @@ const ApplicationDetails = () => {
         <p>
           <b>Status:</b>{" "}
           <span
-            className={`px-3 py-1 rounded-full text-sm ${getStatusStyle(status)}`}
+            className={`inline-block px-3 py-1 rounded-full text-sm ${getStatusStyle(status)}`}
           >
             {status}
           </span>
@@ -99,7 +99,7 @@ const ApplicationDetails = () => {
           href={job?.jobLink}
           target="_blank"
           rel="noreferrer"
-          className="cursor-pointer text-blue-600 underline hover:text-blue-500"
+          className="inline-block cursor-pointer text-blue-600 underline hover:text-blue-500"
         >
           Open Job
         </a>
@@ -118,19 +118,19 @@ const ApplicationDetails = () => {
           docs.map((doc) => (
             <div
               key={doc._id}
-              className="rounded-lg border border-slate-200 p-3 flex justify-between mb-2"
+              className="rounded-lg border border-slate-200 p-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 mb-2"
             >
               <div>
-                <p className="font-medium text-slate-900">{doc.documentType}</p>
+                <p className="font-semibold text-slate-900 capitalize">{doc.documentType}</p>
               </div>
 
               <a
                 href={getDocumentUrl(doc.filePath)}
                 target="_blank"
                 rel="noreferrer"
-                className="cursor-pointer font-medium text-blue-600 hover:text-blue-500"
+                className="inline-flex justify-center rounded-lg bg-indigo-50 hover:bg-indigo-600 hover:text-white px-3 py-1.5 text-sm font-semibold text-indigo-700 cursor-pointer transition"
               >
-                View
+                View File
               </a>
             </div>
           ))
