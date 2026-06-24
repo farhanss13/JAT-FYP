@@ -61,6 +61,35 @@ const Reminders = () => {
     };
   }, []);
 
+  // Load draft from localStorage on mount
+  useEffect(() => {
+    const savedDraft = localStorage.getItem("jat:remindersFormDraft");
+    if (savedDraft) {
+      try {
+        setForm(JSON.parse(savedDraft));
+        toast.info("Unsaved draft reminder restored");
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, []);
+
+  // Auto-save draft every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const hasContent = Object.entries(form).some(([key, val]) => {
+        if (key === "reminderType" && val === "Follow-up") return false;
+        return val !== "";
+      });
+      if (hasContent) {
+        localStorage.setItem("jat:remindersFormDraft", JSON.stringify(form));
+        toast.info("Draft auto-saved");
+      }
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, [form]);
+
   // 🔹 Handle input
   const handleChange = (e) => {
     setForm({
@@ -90,6 +119,8 @@ const Reminders = () => {
         reminderDate: "",
         reminderType: "Follow-up",
       });
+
+      localStorage.removeItem("jat:remindersFormDraft");
 
       await fetchReminders();
       window.dispatchEvent(new Event("jat:remindersUpdated"));

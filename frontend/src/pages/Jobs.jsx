@@ -48,6 +48,35 @@ const Jobs = () => {
     fetchJobs();
   }, [searchTerm, companyFilter, statusFilter, startDate, endDate]);
 
+  // Load draft from localStorage on mount
+  useEffect(() => {
+    const savedDraft = localStorage.getItem("jat:jobsFormDraft");
+    if (savedDraft) {
+      try {
+        setForm(JSON.parse(savedDraft));
+        toast.info("Unsaved draft application restored");
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }, []);
+
+  // Auto-save draft every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const hasContent = Object.entries(form).some(([key, val]) => {
+        if (key === "status" && val === "Applied") return false;
+        return val !== "";
+      });
+      if (hasContent && !editingId) {
+        localStorage.setItem("jat:jobsFormDraft", JSON.stringify(form));
+        toast.info("Draft auto-saved");
+      }
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, [form, editingId]);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -121,6 +150,7 @@ const Jobs = () => {
 
       setUploadFile(null);
       setDocType("resume");
+      localStorage.removeItem("jat:jobsFormDraft");
 
       fetchJobs();
     } catch {
