@@ -10,7 +10,7 @@ This document describes the structure, architecture, styling, and application ro
 *   **Styling:** Tailwind CSS (v4)
 *   **Routing:** React Router DOM (v7)
 *   **State & HTTP Client:** Axios
-*   **Charts & Visualization:** Recharts
+*   **Charts & Visualization:** Recharts etc.
 *   **Icons:** Lucide React
 *   **Toast Notifications:** React Toastify
 
